@@ -1,8 +1,7 @@
 
 import axios from 'axios';
 
-// Replace this placeholder with your actual ngrok URL
-const BASE_URL = 'https://<your-ngrok-id>.ngrok-free.app';
+const BASE_URL = 'https://3c02-34-58-148-17.ngrok-free.app/';
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
@@ -35,3 +34,4 @@ apiClient.interceptors.response.use(
 );
 
 export default apiClient;
+

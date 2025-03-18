@@ -1,69 +1,93 @@
-# Welcome to your Lovable project
 
-## Project info
+# Medical Document Processor
 
-**URL**: https://lovable.dev/projects/1c4d1e81-819a-4fa6-8619-5ff422be1b94
+A ReactJS application that interacts with a Flask backend API to process, analyze, and enhance medical documents.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- Health status checking
+- Document type detection
+- Text enhancement
+- OCR processing for images
+- Comprehensive file processing (images, PDFs, DOCXs)
+- Clean, modern UI inspired by Apple design principles
 
-**Use Lovable**
+## Technologies Used
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1c4d1e81-819a-4fa6-8619-5ff422be1b94) and start prompting.
+- ReactJS with TypeScript
+- Tailwind CSS for styling
+- Axios for API requests
+- React Markdown for rendering enhanced text
 
-Changes made via Lovable will be committed automatically to this repo.
+## Setup Instructions
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js (v14.0.0 or later)
+- npm (v6.0.0 or later)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
+1. Clone this repository:
+   ```
+   git clone <repository-url>
+   cd medical-document-processor
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+3. Update the API base URL:
+   - Open `src/api/apiClient.ts`
+   - Replace `<your-ngrok-id>` in the `BASE_URL` constant with your actual ngrok URL
+   ```typescript
+   const BASE_URL = 'https://<your-ngrok-id>.ngrok-free.app';
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+4. Start the development server:
+   ```
+   npm run dev
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## API Endpoints
+
+The application interacts with the following Flask backend API endpoints:
+
+- `GET /health`: Check the health status of the backend
+- `POST /detect-document-type`: Takes a text input and detects the document type
+- `POST /enhance-text`: Takes a text input and an optional document type, returns enhanced medical text
+- `POST /ocr-image`: Takes an image file, performs OCR, and returns the extracted text
+- `POST /process-file`: Takes a file (image, PDF, or DOCX), processes it, and returns enhanced text
+
+## Project Structure
+
+```
+src/
+├── api/
+│   ├── apiClient.ts     # Axios client configuration
+│   ├── apiService.ts    # API service functions
+│   └── types.ts         # TypeScript interfaces
+├── components/
+│   ├── FileProcessor.tsx     # File processing component
+│   ├── FileUpload.tsx        # File upload component
+│   ├── HealthCheck.tsx       # Health check component
+│   ├── LoadingSpinner.tsx    # Loading spinner component
+│   ├── Navbar.tsx            # Navigation bar component
+│   ├── ResultDisplay.tsx     # Result display component
+│   └── TextProcessor.tsx     # Text processing component
+└── pages/
+    ├── Index.tsx        # Home page
+    └── NotFound.tsx     # 404 page
 ```
 
-**Edit a file directly in GitHub**
+## Troubleshooting
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- If you encounter CORS issues, ensure your Flask backend has CORS enabled
+- For file upload failures, check that your Flask backend is correctly configured for multipart/form-data
+- If the ngrok URL changes, update it in the `apiClient.ts` file
 
-**Use GitHub Codespaces**
+## License
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/1c4d1e81-819a-4fa6-8619-5ff422be1b94) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+MIT
